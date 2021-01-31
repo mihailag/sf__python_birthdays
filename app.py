@@ -6,6 +6,7 @@ data_file='datafile.py'
 result_file='birthday_diff.json'
 today = date.today()
 birthday_dict = {}
+birthday_json = {}
 
 def date_diff():
 	if os.path.exists(data_file):
@@ -22,14 +23,13 @@ def date_diff():
 		# количество дней с даты рождения
 		# возраст в годах на момент рождения самого младшего сотрудника
 		for birthday_current in sorted(birthday_dict):
-			birthday_json = {}
 			birthday_json[birthday_dict[birthday_current]] = {
 				'days': (today - birthday_current).days,
 				'years': ((birthday_last - birthday_current).days)//365
 			}
-			with open(result_file, 'a') as write_file:
-				json.dump(birthday_json, write_file, ensure_ascii=False)
-				write_file.write('\n')
+		with open(result_file, 'a') as write_file:
+			json.dump(birthday_json, write_file, ensure_ascii=False)
+			write_file.write('\n')
 
 	else:
 		print ("Файл не найден")
