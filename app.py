@@ -27,9 +27,8 @@ def date_diff():
 				'days': (today - birthday_current).days,
 				'years': ((birthday_last - birthday_current).days)//365
 			}
-		with open(result_file, 'a') as write_file:
+		with open(result_file, 'w') as write_file:
 			json.dump(birthday_json, write_file)
-			write_file.write('\n')
 
 	else:
 		print("Файл не найден")
